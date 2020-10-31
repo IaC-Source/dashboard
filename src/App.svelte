@@ -14,7 +14,8 @@
 	{:else}
 	<h1>Hello {name}!</h1>
 	<img alt="helm images" src="/helm-horizontal-color.png">
-	<h2>I am J.A.R.V.I.S How can manage your k8s package.</h2>
+	<h2>I am J.A.R.V.I.S </h2>
+        <h2>How could I manage your k8s package.</h2>
 	{/if}
 </main>
 
