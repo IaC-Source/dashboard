@@ -1,21 +1,29 @@
 <script>
-	import {onMount} from 'svelte';
+	import {onMount} from 'svelte'; 
+	import Chart from 'svelte-frappe-charts';
 	export let name;
 	onMount(async ()=> {
 		const respose = await fetch('/api');
 		const json = await respose.json();
 		name = json.name;
 	})
+	let data = {
+    labels: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'],
+    datasets: [
+      {
+        values: [10, 12, 3, 9, 8, 15, 9]
+      }
+    ],
+  };
+  const color = ["#00ff00"];
 </script>
 
 <main>
 	{#if !!name == false}
-	<p> 로딩중인데?</p>
+	<p> Loading ...</p>
 	{:else}
-	<h1>Hello {name}!</h1>
-	<img alt="helm images" src="/helm-horizontal-color.png">
-	<h2>I am J.A.R.V.I.S </h2> 
-        <h2>How could I manage your k8s package.</h2>
+	<h1>Hello {name}!</h1> 
+	<Chart data={data} colors={color} type="line" />
 	{/if}
 </main>
 
@@ -28,6 +36,7 @@
 	}
 
 	h1 {
+		display: inline-block;
 		color: #00ff00;
 		text-transform: uppercase;
 		font-size: 4em;
