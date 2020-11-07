@@ -2,29 +2,47 @@
 	import {onMount} from 'svelte'; 
 	import Chart from 'svelte-frappe-charts';
 	export let name;
+
+	let chartRef;
+	const color = ['#ebedf0', '#c6e48b', '#7bc96f', '#239a3b', '#196127'];
+	const now = new Date();
+	const start = (date) => new Date(date.getFullYear(), 0, 1); 
+	const startDate = start(new Date());
+	const endDate = new Date(startDate.getFullYear(), now.getMonth(), startDate.getDate());
+	const generateRandomData = (startDate, endDate) => {
+		const returnObject = {};
+		let gauged = startDate.getTime() / 1000;
+		const limitation = (endDate.getTime() / 1000);
+		while ( gauged <= limitation ) {
+			returnObject[gauged] = Math.floor(Math.random() * 100);
+			gauged += Math.floor(Math.random() * 86400);
+		}
+		return returnObject;
+	}
 	onMount(async ()=> {
 		const respose = await fetch('/api');
 		const json = await respose.json();
 		name = json.name;
 	})
+
 	let data = {
-    labels: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'],
-    datasets: [
-      {
-        values: [10, 12, 3, 9, 8, 15, 9]
-      }
-    ],
+		dataPoints: generateRandomData(startDate, endDate),
+		start: startDate,
+		end: endDate,
   };
-  const color = ["#00ff00"];
 </script>
 
 <main>
 	{#if !!name == false}
 	<p> Loading ...</p>
 	{:else}
-	<h1>Hello {name}!</h1> 
-	<Chart data={data} colors={color} type="line" />
+	<h1>Hello {name}!</h1>
+	<h2>Monthly activity logs</h2>
+	<div>
+		<Chart data={data} color={color} type="heatmap" bind:this={chartRef} />
+	</div>
 	{/if}
+
 </main>
 
 <style>
@@ -35,22 +53,16 @@
 		margin: 0 auto;
 	}
 
+	div {
+		display: inline-block;
+	}
+
 	h1 {
 		display: inline-block;
 		color: #00ff00;
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
-	}
-
-	h2 {
-		color: #bb33ff;
-		font-size: 3em;
-		font-weight: 30;
-	}
-
-	img {
-		width: 150px;
 	}
 
 	@media (min-width: 640px) {
