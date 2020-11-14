@@ -8,7 +8,7 @@
 	const now = new Date();
 	const start = (date) => new Date(date.getFullYear(), 0, 1); 
 	const startDate = start(new Date());
-	const endDate = new Date(startDate.getFullYear(), now.getMonth(), startDate.getDate());
+	const endDate = new Date(startDate.getFullYear(), 11, 31);
 	const generateRandomData = (startDate, endDate) => {
 		const returnObject = {};
 		let gauged = startDate.getTime() / 1000;
