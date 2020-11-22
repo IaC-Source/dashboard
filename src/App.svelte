@@ -60,7 +60,6 @@
 	h1 {
 		display: inline-block;
 		color: #0000ff;
-		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
 	}
