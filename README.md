@@ -1,9 +1,7 @@
 # Dashboard app
+# 대시보드 앱
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+이 저장소는 [컨테이너 기반 인프라스트럭처](https://yes24.com) 책 실습 부분에서 예제로 배포되는 애플리케이션입니다.
+애플리케이션은 [Svelte](https://svelte.dev)로 작성하였으며, 사용자의 활동을 히트맵 형식의 그래프로 보여주는 기능을 제공합니다.
+
+> Note: 이 애플리케이션을 단일로 구성하기 위해서는 Node.js 12 버전 이상이 필요합니다.
